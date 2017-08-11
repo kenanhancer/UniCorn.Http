@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
@@ -49,7 +50,7 @@ namespace UniCorn.Http.Test
                     {
                         Console.WriteLine("Go Request!");
 
-                        await next();
+                        await next().ConfigureAwait(false);
                     });
 
                     httpServer.RequestReceived += async (sender, e) =>
@@ -59,7 +60,7 @@ namespace UniCorn.Http.Test
 
                         if (e.Request.InputRaw.Length > 0)
                         {
-                            await response.ContentStream.WriteAsync(e.Request.InputRaw, 0, e.Request.InputRaw.Length);
+                            await response.ContentStream.WriteAsync(e.Request.InputRaw, 0, e.Request.InputRaw.Length).ConfigureAwait(false);
                         }
                         else
                         {
@@ -68,7 +69,7 @@ namespace UniCorn.Http.Test
                             response.Content = message;
                         }
 
-                        await response.ContentStream.FlushAsync();
+                        await response.ContentStream.FlushAsync().ConfigureAwait(false);
                     };
 
                     httpServer.Start();
@@ -119,6 +120,8 @@ namespace UniCorn.Http.Test
                         await next().ConfigureAwait(false);
 
                         Console.WriteLine($"Request {context.Request.Uri} took {sw.Elapsed}");
+
+                        Console.WriteLine();
                     });
 
                     httpServer.Use(async (context, next) =>
@@ -158,7 +161,7 @@ namespace UniCorn.Http.Test
                         }
                         else
                         {
-                            await StreamUtility.FileToStream(path, context.Response.ContentStream);
+                            await StreamUtility.FileToStream(path, context.Response.ContentStream).ConfigureAwait(false);
                         }
 
                         //throw new HttpException(HttpResponseCode.NotFound, "The resource you've looked for is not found");
@@ -166,10 +169,25 @@ namespace UniCorn.Http.Test
 
                     httpServer.Use(async (context, next) =>
                     {
+                        Console.WriteLine("POST Handler");
+
+                        if (context.Request.InputRaw.Length > 0)
+                        {
+                            context.Response.ResponseCode = HttpResponseCode.Ok;
+                            await context.Response.ContentStream.WriteAsync(context.Request.InputRaw, 0, context.Request.InputRaw.Length).ConfigureAwait(false);
+                        }
+                        else
+                        {
+                            await next().ConfigureAwait(false);
+                        }
+                    });
+
+                    httpServer.Use((context, next) =>
+                    {
                         context.Response.ResponseCode = HttpResponseCode.NotFound;
                         context.Response.Content = "There are not found.";
 
-                        await Task.CompletedTask;
+                        return Task.CompletedTask;
                     });
 
                     httpServer.Start();
@@ -189,7 +207,21 @@ namespace UniCorn.Http.Test
 
             string result1 = PostJsonData("http://127.0.0.1:8080", "{" + "'FirstName':'Kenan','LastName':'Hancer'" + "}\r\n\r\n").Result;
 
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Output:");
             Console.WriteLine(result1);
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine();
+
+            string result2 = RequestPage("http://127.0.0.1:8080/iisstart.htm").Result;
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Output:");
+            Console.WriteLine(result2);
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine();
+
+            OpenBrowser("http://127.0.0.1:8080/iisstart.htm");
 
             Console.ReadKey();
 
@@ -206,7 +238,31 @@ namespace UniCorn.Http.Test
 
                     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                    HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(url, content);
+                    HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(url, content).ConfigureAwait(false);
+                    {
+                        string result = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                        return result;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return null;
+        }
+
+        public static async Task<string> RequestPage(string url)
+        {
+            try
+            {
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    httpClient.Timeout = TimeSpan.FromMilliseconds(Timeout.Infinite);
+
+                    httpClient.DefaultRequestHeaders.Accept.TryParseAdd("text/html");
+
+                    using (HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url))
                     {
                         string result = await httpResponseMessage.Content.ReadAsStringAsync();
 
@@ -218,6 +274,34 @@ namespace UniCorn.Http.Test
             {
             }
             return null;
+        }
+
+        public static void OpenBrowser(string url)
+        {
+            try
+            {
+                Process.Start(url);
+            }
+            catch
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    url = url.Replace("&", "^&");
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    Process.Start("xdg-open", url);
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    Process.Start("open", url);
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
     }
 }

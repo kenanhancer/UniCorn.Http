@@ -1,0 +1,8 @@
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http\bin\Debug\netcoreapp1.1\UniCorn.Http.deps.json
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http\bin\Debug\netcoreapp1.1\UniCorn.Http.dll
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http\bin\Debug\netcoreapp1.1\UniCorn.Http.pdb
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http\obj\Debug\netcoreapp1.1\UniCorn.Http.AssemblyInfo.cs
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http\obj\Debug\netcoreapp1.1\UniCorn.Http.dll
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http\obj\Debug\netcoreapp1.1\UniCorn.Http.pdb
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http\obj\Debug\netcoreapp1.1\UniCorn.Http.csprojResolveAssemblyReference.cache
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http\obj\Debug\netcoreapp1.1\UniCorn.Http.csproj.CoreCompileInputs.cache

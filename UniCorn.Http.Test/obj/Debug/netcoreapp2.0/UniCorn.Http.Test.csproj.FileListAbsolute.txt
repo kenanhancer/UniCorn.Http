@@ -1,0 +1,14 @@
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\bin\Debug\netcoreapp2.0\UniCorn.Http.Test.deps.json
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\bin\Debug\netcoreapp2.0\UniCorn.Http.Test.runtimeconfig.json
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\bin\Debug\netcoreapp2.0\UniCorn.Http.Test.runtimeconfig.dev.json
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\bin\Debug\netcoreapp2.0\UniCorn.Http.Test.dll
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\bin\Debug\netcoreapp2.0\UniCorn.Http.Test.pdb
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\bin\Debug\netcoreapp2.0\UniCorn.Http.dll
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\bin\Debug\netcoreapp2.0\UniCorn.Http.pdb
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\obj\Debug\netcoreapp2.0\UniCorn.Http.Test.csprojResolveAssemblyReference.cache
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\obj\Debug\netcoreapp2.0\UniCorn.Http.Test.csproj.CoreCompileInputs.cache
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\obj\Debug\netcoreapp2.0\UniCorn.Http.Test.AssemblyInfo.cs
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\obj\Debug\netcoreapp2.0\UniCorn.Http.Test.dll
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\obj\Debug\netcoreapp2.0\UniCorn.Http.Test.pdb
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\bin\Debug\netcoreapp2.0\UniCorn.Core.dll
+C:\Users\dtkhancer\Documents\KenanUni\CSharp_Projects\UniCorn\UniCorn.Http.Test\bin\Debug\netcoreapp2.0\UniCorn.Core.pdb
